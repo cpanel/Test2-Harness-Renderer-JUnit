@@ -7,6 +7,8 @@ Revision history for Test2-Harness-Renderer-JUnit
         Add a timestamp attribute to each <testsuite> element in the generated
         XML.
 
+        Add an id attribute to each <testsuite> element in the generated XML.
+
 0.001077 2019-05-24 - Todd Rinaldo
         First version based on unreleased Upstream Test2::Harness.
 

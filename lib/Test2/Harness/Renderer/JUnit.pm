@@ -37,6 +37,7 @@ sub init {
 
     $self->{'allow_passing_todos'} = $ENV{'ALLOW_PASSING_TODOS'} ? 1 : 0;
     $self->{'junit_file'} //= $ENV{'JUNIT_TEST_FILE'} || 'junit.xml';
+    $self->{'suite_id'} = 0;
 
     $self->{'tests'} = {};    # We need a pointer to each test so we know where to go for each event.
 }
@@ -104,6 +105,7 @@ sub render_event {
         $test->{'stop'} = $stamp;
         $test->{'testsuite'}->{'time'} = $test->{'stop'} - $test->{'start'};
         $test->{'testsuite'}->{'timestamp'} = _timestamp( $test->{'start'} );
+        $test->{'testsuite'}->{'id'} = $self->{'suite_id'}++;
 
         push @{ $test->{'testcase'} }, $self->xml->testcase( { 'name' => "Tear down.", 'time' => $stamp - $test->{'last_job_start'} }, "" );
 
