@@ -52,7 +52,17 @@ sub render_event {
     my $f      = $event->{facet_data};
     my $job    = $f->{harness_job};
     my $job_id = $event->{'job_id'} or return;
-    my $stamp  = $event->{'stamp'} || die "No time stamp found for event?!?!?!?";
+
+    my $stamp = $event->{'stamp'};
+    unless ($stamp) {
+        if ( $f->{'harness_job_end'} ) {
+            $stamp = $f->{'harness_job_end'}->{'times'}->{'source'}->{'stop'}
+                || $f->{'harness_job_end'}->{'times'}->{'source'}->{'last'}
+                || die Dumper($event) . "No time stamp found for event?!?!?!?";
+        } else {
+            $stamp = $job->{'stamp'} || die Dumper($event) . "\nNo time stamp found for event?!?!?!?";
+        }
+    }
 
     # At job launch we need to start collecting a new junit testdata section.
     # We throw out anything we've collected to date.
@@ -90,7 +100,7 @@ sub render_event {
     # We have all the data. Print the XML.
     if ( $f->{'harness_job_end'} ) {
         $self->close_open_failure_testcase( $test, -1 );
-        $test->{'stop'} = $event->{'stamp'};
+        $test->{'stop'} = $stamp;
         $test->{'testsuite'}->{'time'} = $test->{'stop'} - $test->{'start'};
 
         push @{ $test->{'testcase'} }, $self->xml->testcase( { 'name' => "Tear down.", 'time' => $stamp - $test->{'last_job_start'} }, "" );
