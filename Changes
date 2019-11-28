@@ -9,6 +9,9 @@ Revision history for Test2-Harness-Renderer-JUnit
 
         Add an id attribute to each <testsuite> element in the generated XML.
 
+        Add a classname attribute to each <testcase> element in the generated
+        XML. This will contain the name of the test file that was executed.
+
 0.001077 2019-05-24 - Todd Rinaldo
         First version based on unreleased Upstream Test2::Harness.
 
