@@ -4,6 +4,9 @@ Revision history for Test2-Harness-Renderer-JUnit
         Work around Test2::Harness not setting a timestamp for all events. See
         https://github.com/Test-More/Test2-Harness/issues/117 for details.
 
+        Add a timestamp attribute to each <testsuite> element in the generated
+        XML.
+
 0.001077 2019-05-24 - Todd Rinaldo
         First version based on unreleased Upstream Test2::Harness.
 

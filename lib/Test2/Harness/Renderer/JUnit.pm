@@ -11,6 +11,7 @@ our $VERSION = '0.001077';
 use Data::Dumper; $Data::Dumper::Sortkeys = 1;
 
 use File::Spec;
+use POSIX ();
 use Storable qw/dclone/;
 use XML::Generator ();
 
@@ -102,6 +103,7 @@ sub render_event {
         $self->close_open_failure_testcase( $test, -1 );
         $test->{'stop'} = $stamp;
         $test->{'testsuite'}->{'time'} = $test->{'stop'} - $test->{'start'};
+        $test->{'testsuite'}->{'timestamp'} = _timestamp( $test->{'start'} );
 
         push @{ $test->{'testcase'} }, $self->xml->testcase( { 'name' => "Tear down.", 'time' => $stamp - $test->{'last_job_start'} }, "" );
 
@@ -280,6 +282,11 @@ sub close_open_failure_testcase {
 sub xml {
     my $self = shift;
     return $self->{'xml'};
+}
+
+sub _timestamp {
+    my $time = shift;
+    return POSIX::strftime('%Y-%m-%dT%H:%M:%S', localtime(int($time)));
 }
 
 # These helpers were borrowed from https://metacpan.org/pod/TAP::Formatter::JUnit. Thanks!
