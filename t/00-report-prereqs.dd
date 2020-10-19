@@ -1,0 +1,56 @@
+do { my $x = {
+       'configure' => {
+                        'requires' => {
+                                        'ExtUtils::MakeMaker' => '0',
+                                        'perl' => '5.014'
+                                      }
+                      },
+       'develop' => {
+                      'requires' => {
+                                      'File::Spec' => '0',
+                                      'IO::Handle' => '0',
+                                      'IPC::Open3' => '0',
+                                      'Pod::Coverage::TrustPod' => '0',
+                                      'Test::Kwalitee' => '1.21',
+                                      'Test::More' => '0.88',
+                                      'Test::Pod' => '1.41',
+                                      'Test::Pod::Coverage' => '1.08',
+                                      'Test::Spelling' => '0.12',
+                                      'Test::Version' => '2.00'
+                                    }
+                    },
+       'runtime' => {
+                      'requires' => {
+                                      'Carp' => '0',
+                                      'Cwd' => '0',
+                                      'Exporter' => '0',
+                                      'File::Spec' => '0',
+                                      'Storable' => '0',
+                                      'Test2::Harness::Renderer' => '1.000029',
+                                      'Test2::Harness::Util::HashBase' => '1.000029',
+                                      'XML::Generator' => '0',
+                                      'perl' => '5.014'
+                                    }
+                    },
+       'test' => {
+                   'recommends' => {
+                                     'CPAN::Meta' => '2.120900'
+                                   },
+                   'requires' => {
+                                   'App::Yath::Tester' => '1.000029',
+                                   'Data::Dumper' => '0',
+                                   'ExtUtils::MakeMaker' => '0',
+                                   'File::Spec' => '0',
+                                   'File::Temp' => '0',
+                                   'Test2::API' => '1.302182',
+                                   'Test2::Plugin::NoWarnings' => '0',
+                                   'Test2::Tools::Explain' => '0',
+                                   'Test2::V0' => '0.000136',
+                                   'Test::More' => '0',
+                                   'XML::Simple' => '0',
+                                   'perl' => '5.014'
+                                 }
+                 }
+     };
+  $x;
+ }
