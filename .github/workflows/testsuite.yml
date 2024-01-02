@@ -26,6 +26,7 @@ jobs:
         uses: perl-actions/install-with-cpm@v1
         with:
           cpanfile: "cpanfile"
+          args: "--with-test --with-develop --with-requires --with-build"
       - run: perl Makefile.PL
       - run: make
       - run: make test

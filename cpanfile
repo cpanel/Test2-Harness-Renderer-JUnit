@@ -25,6 +25,11 @@ on 'configure' => sub {
   requires "ExtUtils::MakeMaker" => "0";
 };
 
+on 'build' => sub {
+  requires "Test::Pod::Coverage" => 0;
+  requires "Test::CheckManifest" => 0;
+};
+
 on 'develop' => sub {
   requires "Test::Pod" => "1.41";
   requires "Test::Spelling" => "0.12";
